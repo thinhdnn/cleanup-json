@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Cleaner</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: calc(100% - 40px); /* Chiều rộng tính toán sau khi thụt lề */
+            margin: 0 20px; /* Thụt lề ở mỗi bên 20px */
+        }
+
+        textarea {
+            width: 100%;
+            resize: vertical; /* Cho phép điều chỉnh kích thước theo chiều dọc */
+            box-sizing: border-box; /* Bao gồm padding và border trong tổng chiều rộng và chiều cao của phần tử */
+            margin-bottom: 20px; /* Khoảng cách giữa các phần tử */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JSON Cleaner</h1>
+        <form method="post" onsubmit="formatRemoveList()">
+            <label for="keys_to_remove">Keys to Remove (comma separated):</label><br>
+            <input type="text" id="keys_to_remove" name="keys_to_remove" placeholder="key1, key2, key3"><br><br>
+            <label for="remove_list">Remove keys have values (JSON format):</label><br>
+            <input type="text" id="remove_list" name="remove_list" placeholder="null, []"><br><br>
+            <label for="input_json">Input JSON:</label><br>
+            <textarea id="input_json" name="input_json" rows="10"></textarea><br><br>
+            <input type="submit" value="Clean JSON">
+        </form>
+        {% if error %}
+            <div style="color: red;">{{ error }}</div>
+        {% endif %}
+        <h2>Output:</h2>
+        <textarea id="output_json" rows="10">{{ output }}</textarea>
+    </div>
+</body>
+</html>
